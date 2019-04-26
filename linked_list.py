@@ -77,17 +77,34 @@ class LinkedList(object):
         if self.head:
             while current.next != None:
                 # first element matching the value
-                if current == value and current == previous:
-                    current.next = None
+                # print(current.value, previous.value, value)
+                if current.value == value and current.value == previous.value:
+                    print('entering first condition')
+                    current = current.next
+                    print(current.value)
+                    current.next = self.head
+                    print('head', self.head.value)
+                    print('after changing head', current.value, previous.value)
                     break
-                elif current == value and current != previous:
+                # if the value is one of the middle elements
+                elif current.value == value and current.value != previous:
+                    print('entering second condition')
                     previous.next = current.next
                     current.next = None
                     current = previous
+                    break
+                else:
+                    previous = current
+                    current = current.next
+            # if the value is the last element in the linked list
             if current.next == None:
-                if current == value:
-                    current = previous
+                print('entering final if')
+                if current.value == value:
+                    print('value found')
+                    current.value = previous.value
                     previous.next = None
+                else:
+                    print('else')
         else:
             pass
 
@@ -106,20 +123,26 @@ ll.append(e3)
 
 # Test get_position
 # Should print 3
-print ll.head.next.next.value
+print(ll.head.next.next.value)
 # Should also print 3
-print ll.get_position(3).value
+print(ll.get_position(3).value)
 
 # Test insert
 ll.insert(e4, 3)
 # Should print 4 now
-print ll.get_position(3).value
+print(ll.get_position(3).value)
 #
 # Test delete
-ll.delete(1)
+ll.delete(3)
 # Should print 2 now
-print ll.get_position(1).value
+print('position 1')
+print(ll.get_position(1).value)
 # Should print 4 now
-print ll.get_position(2).value
+print('position 2')
+print(ll.get_position(2).value)
 # Should print 3 now
-print ll.get_position(3).value
+print('position 3')
+print(ll.get_position(3).value)
+# Should print 4 now
+print('position 4')
+print(ll.get_position(4).value)
