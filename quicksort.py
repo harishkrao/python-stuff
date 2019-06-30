@@ -1,4 +1,4 @@
-ef quicksort(arr, begin, end):
+def quicksort(arr, begin, end):
     
     if end - begin > 1:
         p = partition(arr, begin, end)
